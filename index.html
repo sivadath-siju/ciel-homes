@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/logo.png">
+<!-- ============================================================
+  PAGE TITLE — shown in the browser tab and Google search.
+  Format: "Brand — Tagline | Location"
+  CHANGE: Update with your actual business name and location.
+============================================================ -->
+<title>Ciel Homes — Where Nature Meets Luxury | Muvattupuzha, Kerala</title>
+
+<!-- ============================================================
+  SEO & SOCIAL META TAGS
+  CHANGE: description, og:image (use a real villa photo URL once hosted)
+============================================================ -->
+<meta name="description" content="Ciel Homes builds premium luxury villas in Muvattupuzha, Kerala. Gated community, private gardens, swimming pool. Where Nature Meets Luxury.">
+<meta name="keywords"    content="luxury villa Kerala, 4BHK villa Muvattupuzha, villa for sale Kerala, Ciel Homes, gated villa community">
+<meta property="og:title"       content="Ciel Homes — Where Nature Meets Luxury">
+<meta property="og:description" content="Premium villas in Muvattupuzha, Kerala. Gated community, private gardens, swimming pool.">
+<!-- CHANGE: Replace with a direct URL to one of your real villa photos -->
+<meta property="og:image" content="https://www.cielhomes.in/Images/link.jpg">
+<meta property="og:type"  content="website">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<!-- Site stylesheet — all visual styles are in this file -->
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Custom cursor dots (hidden on mobile via JS) -->
+<div class="cursor"      id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ============================================================
+  MOBILE FULLSCREEN MENU
+  CHANGE: Update link text / add/remove items to match your nav.
+============================================================ -->
+<div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Navigation menu">
+  <ul>
+    <li><a href="#villas"   class="mobile-nav-link">Our Villas</a></li>
+    <li><a href="#why"      class="mobile-nav-link">Why Ciel</a></li>
+    <li><a href="#location" class="mobile-nav-link">Location</a></li>
+    <li><a href="#process"  class="mobile-nav-link">Process</a></li>
+    <li><a href="#contact"  class="mobile-nav-link mobile-nav-cta">Enquire Now</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================
+  NAVIGATION
+  CHANGE: Company name, tagline, nav link labels, CTA button text.
+============================================================ -->
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="#" class="logo-wrap" aria-label="Ciel Homes home">
+  <span class="logo-name">CIEL HOMES</span>    <span class="logo-motto">Where Nature Meets Luxury</span>    <!-- CHANGE: Tagline -->
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#villas">Our Villas</a></li>
+    <li><a href="#why">Why Ciel</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Enquire Now</a>             <!-- CHANGE: CTA text -->
+  <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+    <span class="ham-line"></span>
+  </button>
+</nav>
+
+<!-- ============================================================
+  HERO
+  CHANGE: Eyebrow text, headline, sub-paragraph, button labels.
+  Hero background image: edit the CSS in styles.css → search for "hero-bg".
+============================================================ -->
+<section class="hero" id="home">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <!-- CHANGE: Location label -->
+    <p class="hero-eyebrow">Luxury Villa Builders · Muvattupuzha, Kerala</p>
+    <!-- CHANGE: Main headline — keep the <em> for italic gold styling -->
+    <h1 class="hero-title">Where Nature<br>Meets <em>Luxury</em></h1>
+    <!-- CHANGE: Short brand description -->
+    <p class="hero-sub">Ciel Homes crafts premium 4BHK villas that breathe with Kerala's landscape — spaces where greenery, natural light, and refined living exist in perfect harmony.</p>
+    <div class="hero-actions">
+      <a href="#villas"  class="btn-primary">Explore Our Villas</a>   <!-- CHANGE: Button text -->
+      <a href="#contact" class="btn-ghost">Book a Consultation</a>    <!-- CHANGE: Button text -->
+    </div>
+  </div>
+  <!-- CHANGE: Update these 3 numbers to match your current portfolio -->
+  <div class="hero-stats" aria-label="Portfolio stats">
+        <div class="hero-logo">
+    <img src="Images/logo.png" alt="Ciel Homes Logo" class="hero-logo-img">
+  </div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Villas Delivered</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">Under Construction</div></div>
+    <div class="stat"><div class="stat-num">4BHK</div><div class="stat-label">Premium Spec</div></div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- ============================================================
+  ABOUT / PHILOSOPHY
+  CHANGE: Heading, paragraph text, pillar list items.
+============================================================ -->
+<section class="about" id="about">
+  <div class="reveal">
+    <p class="section-eyebrow" data-n="01">Our Philosophy</p>
+    <!-- CHANGE: Section headline -->
+    <h2 class="section-heading">Built Where Kerala's<br><em>Nature</em> is the Architecture</h2>
+  </div>
+  <div class="reveal">
+    <!-- CHANGE: Company story / description paragraph -->
+    <p class="about-text">At Ciel Homes, we believe the finest luxury is harmony — homes that don't just stand on the land, but grow from it. Every villa we build is designed to frame the greenery, welcome the breeze, and offer a life of serene, effortless elegance in the heart of Kerala.</p>
+    <!-- CHANGE: Add / remove / edit these pillar items — your key selling points -->
+    <div class="pillars">
+      <div class="pillar"><div class="pillar-dot"></div>Premium Materials &amp; Expert Craftsmanship</div>
+      <div class="pillar"><div class="pillar-dot"></div>Gated Communities with Shared Amenities</div>
+      <div class="pillar"><div class="pillar-dot"></div>Fully Furnished — Move-In Ready</div>
+      <div class="pillar"><div class="pillar-dot"></div>Private Gardens &amp; Outdoor Spaces</div>
+      <div class="pillar"><div class="pillar-dot"></div>Transparent, End-to-End Build Process</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  VILLAS SECTION
+  Villa card content (names, specs, hover text, price) is shown here.
+  Full modal details (description, images, features) are in script.js
+  inside the VILLAS data object — edit there to update the modal.
+
+  CHANGE per card:
+    - img src=""  → your real villa photo URL
+    - img alt=""  → descriptive alt text
+    - data-villa  → must match the key in the VILLAS object in script.js
+    - Status tag, villa name, meta specs, hover description, price
+============================================================ -->
+<section class="villas-section" id="villas">
+  <div class="sec-hdr reveal">
+    <div>
+      <p class="section-eyebrow" data-n="02">Our Portfolio</p>
+      <h2 class="section-heading">Our <em>Villas</em></h2>
+    </div>
+    <a href="#contact" class="link-arrow">Enquire About Availability</a>
+  </div>
+
+  <!-- COMPLETED VILLAS -->
+  <p class="sub-label done reveal">Completed — Sold Out</p>
+  <div class="built-grid">
+
+    <!-- ——— VILLA 1 (large card, left) ———
+         CHANGE: src, alt, data-villa key, name, specs, hover text, price -->
+    <div class="villa-card reveal" data-villa="kunnackal" role="button" tabindex="0" aria-label="View Ciel Kunnackal villa details">
+      <img class="villa-img"
+           src="Images/Villa1_3.png"
+           alt="Villa 1"
+           loading="lazy">
+      <div class="villa-veil"></div>
+      <div class="villa-tap-hint">View Details</div>
+      <div class="villa-info">
+        <p class="villa-status-tag">Completed — Sold Out</p>          <!-- CHANGE -->
+        <h3 class="villa-name">Villa I</h3>                    <!-- CHANGE -->
+        <div class="villa-meta-row">
+          <span>3 BHK</span><span>2,000 sq.ft</span><span>8.5 Cents</span><span>Kunnackal, Muvattupuzha</span>
+        </div>
+        <p class="villa-extra">Direct road access villa in a gated colony with private garden, swimming pool access, and 3-car parking.</p>
+        <p class="villa-price-tag">Contact for Pricing</p>            <!-- CHANGE or remove -->
+      </div>
+    </div>
+
+    <!-- ——— VILLA 2 (small card, right) ——— -->
+    <div class="villa-card reveal" data-villa="verdant" role="button" tabindex="0" aria-label="View Ciel Verdant villa details">
+      <img class="villa-img"
+           src="Images/Villa_2/front.jpeg"
+           alt="Ciel Verdant Villa"
+           loading="lazy">
+      <div class="villa-veil"></div>
+      <div class="villa-tap-hint">View Details</div>
+      <div class="villa-info">
+        <p class="villa-status-tag">Completed — Sold Out</p>
+        <h3 class="villa-name">Villa II</h3>
+        <div class="villa-meta-row">
+          <span>4 BHK</span><span>2,370 sq.ft</span><span>12 Cents</span><span>Muvattupuzha</span>
+        </div>
+        <p class="villa-extra">Spacious villa set amid lush greenery with open-plan living and a beautifully landscaped private garden.</p>
+        <p class="villa-price-tag">Contact for Pricing</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNDER CONSTRUCTION VILLAS -->
+  <p class="sub-label uc reveal" style="margin-top:32px;">Under Construction — Coming Soon</p>
+  <div class="uc-grid">
+
+    <!-- ——— UC VILLA 1 ———
+         CHANGE: src, alt, data-villa key, name, specs, progress %, date -->
+    <div class="uc-card reveal" data-villa="serene1" role="button" tabindex="0" aria-label="View Ciel Serene I details">
+      <img class="uc-img"
+           src="Images/Villa_6/3d_1.jpeg"
+           alt="Villa VI — Under Construction"
+           loading="lazy">
+      <div class="uc-overlay"></div>
+      <div class="uc-badge">Under Construction</div>
+      <div class="uc-info">
+        <div class="uc-name">Villa VI</div>                              <!-- CHANGE -->
+        <div class="uc-meta">4 BHK &nbsp;·&nbsp; 2,400 sq.ft &nbsp;·&nbsp; Muvattupuzha</div>  <!-- CHANGE -->
+        <div class="prog-bar">
+          <!-- CHANGE: data-width = construction % complete (e.g. 65 = 65%) -->
+          <div class="prog-fill" data-width="50"></div>
+        </div>
+        <div class="prog-lbl">
+          <span>Progress</span>
+          <strong>50% — Est. Mid 2026</strong>                                <!-- CHANGE: % and date -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ——— UC VILLA 2 ——— -->
+    <div class="uc-card reveal" data-villa="serene2" role="button" tabindex="0" aria-label="View Ciel Serene II details">
+      <img class="uc-img"
+           src="Images/Villa_7/elevation.jpeg"
+           alt="Ciel Serene II — Under Construction"
+           loading="lazy">
+      <div class="uc-overlay"></div>
+      <div class="uc-badge">Under Construction</div>
+      <div class="uc-info">
+        <div class="uc-name">Villa VII</div>
+        <div class="uc-meta">4 BHK &nbsp;·&nbsp; 2,530 sq.ft &nbsp;·&nbsp; Muvattupuzha</div>
+        <div class="prog-bar">
+          <!-- CHANGE: % -->
+          <div class="prog-fill" data-width="75"></div>
+        </div>
+        <div class="prog-lbl">
+          <span>Progress</span>
+          <strong>75% — Est. Mid 2026</strong>                               <!-- CHANGE -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AMENITY BAR — features shared across all villas -->
+  <!-- CHANGE: Add / remove amenity items as needed -->
+  <div class="amenity-bar reveal">
+    <div class="amenity-bar-title">Standard Across All Ciel Villas</div>
+    <div class="amenity-list">
+      <div class="amenity-item">Gated Colony</div>
+      <div class="amenity-item">Common Swimming Pool</div>
+      <div class="amenity-item">2-Car Parking</div>
+      <div class="amenity-item">Gymnasium</div>
+      <div class="amenity-item">Private Garden</div>
+      <div class="amenity-item">5m Internal Road</div>
+      <div class="amenity-item">Fully Furnished</div>
+      <div class="amenity-item">Interlocked Yard</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  VILLA DETAIL MODAL
+  Content is injected dynamically by script.js — do not edit here.
+  To change villa details, edit the VILLAS object in script.js.
+============================================================ -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Villa details">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="Close">&#215;</button>
+    <div class="modal-slider" id="modalSlider">
+      <div class="slider-track" id="sliderTrack"></div>
+      <button class="slider-prev" id="sliderPrev" aria-label="Previous image">&#8249;</button>
+      <button class="slider-next" id="sliderNext" aria-label="Next image">&#8250;</button>
+      <div class="slider-dots"   id="sliderDots"></div>
+    </div>
+    <div class="modal-body">
+      <div>
+        <p class="modal-badge"  id="modalBadge"></p>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <p class="modal-desc"   id="modalDesc"></p>
+        <p class="modal-price"  id="modalPrice"></p>
+        <div class="modal-specs" id="modalSpecs"></div>
+      </div>
+      <div>
+        <div class="modal-features">
+          <p class="modal-features-title">Included Features</p>
+          <div class="modal-features-list" id="modalFeatures"></div>
+        </div>
+        <button class="modal-enquire-btn" id="modalEnquireBtn">Enquire About This Villa</button>
+      </div>
+      <div class="modal-location-row" id="modalLocation"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+  WHY CIEL HOMES — 4 value cards
+  CHANGE: Roman numeral labels, titles, descriptions.
+============================================================ -->
+<section class="why" id="why">
+  <div class="reveal">
+    <p class="section-eyebrow" data-n="03">Why Ciel Homes</p>
+    <h2 class="section-heading">Built on <em>Values</em></h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item reveal">
+      <div class="why-num">I</div>
+      <div class="why-title">Nature-First Design</div>           <!-- CHANGE -->
+      <p class="why-desc">Every villa is oriented to maximise natural light, greenery views, and Kerala's gentle breeze — inside and out.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">II</div>
+      <div class="why-title">Premium Amenities</div>
+      <p class="why-desc">Swimming pool, gated security, landscaped common areas, and ample parking — refined community living at its finest.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">III</div>
+      <div class="why-title">Move-In Ready</div>
+      <p class="why-desc">Fully furnished and finished to an exacting standard. Every detail is attended to — just bring yourself.</p>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">IV</div>
+      <div class="why-title">Prime Locations</div>
+      <p class="why-desc">Peaceful, well-connected areas of Muvattupuzha — serene living without sacrificing accessibility to the city.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  LOCATION + GOOGLE MAPS
+
+  HOW TO EMBED YOUR REAL MAP:
+  1. Open maps.google.com
+  2. Search your property address (e.g. "Kunnackal, Muvattupuzha, Kerala")
+  3. Click the Share icon → "Embed a map" tab
+  4. Copy the src="..." URL from the iframe code
+  5. Paste it in the iframe below replacing the existing src
+
+  CHANGE: iframe src, directions href, all distance/landmark items
+============================================================ -->
+<section class="location" id="location">
+  <div class="sec-hdr reveal">
+    <div>
+      <p class="section-eyebrow" data-n="04">Where We Build</p>
+      <h2 class="section-heading">Perfectly <em>Located</em></h2>
+    </div>
+  </div>
+  <div class="location-grid">
+    <div class="reveal">
+      <!-- CHANGE: Replace src with your real Google Maps embed URL -->
+      <iframe
+        class="map-frame"
+        title="Ciel Homes Location"
+        src="https://maps.google.com/maps?q=Kunnackal,+Muvattupuzha,+Kerala,+India&t=&z=14&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <!-- CHANGE: href → your Google Maps link to the property -->
+      <a href="https://maps.google.com/?q=Kunnackal,+Muvattupuzha,+Kerala"
+         target="_blank" rel="noopener"
+         class="directions-btn">
+        Get Directions
+      </a>
+    </div>
+
+    <!-- CHANGE: Update km values, landmark names, and notes to match your actual location -->
+    <div class="location-highlights reveal">
+      <div class="loc-item">
+        <div class="loc-dist">4.5 km</div>
+        <div class="loc-info">
+          <div class="loc-name">Muvattupuzha Town</div>
+          <div class="loc-note">Markets, banks, shops, and all daily conveniences</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dist">3 km</div>
+        <div class="loc-info">
+          <div class="loc-name">Nearest Hospital</div>
+          <div class="loc-note">Quality healthcare within minutes from your doorstep</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dist">1.5 km</div>
+        <div class="loc-info">
+          <div class="loc-name">NH 85 Highway</div>
+          <div class="loc-note">Fast connectivity to Kochi and Kottayam</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dist">32 km</div>
+        <div class="loc-info">
+          <div class="loc-name">Kochi International Airport</div>
+          <div class="loc-note">Approximately 55 minutes by road</div>
+        </div>
+      </div>
+      <div class="loc-item">
+        <div class="loc-dist">38 km</div>
+        <div class="loc-info">
+          <div class="loc-name">Ernakulam City</div>
+          <div class="loc-note">Major commercial hub, approximately 55 minutes</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  PROCESS — 4 build steps
+  CHANGE: Step titles and descriptions.
+============================================================ -->
+<section class="process" id="process">
+  <div class="sec-hdr reveal">
+    <div>
+      <p class="section-eyebrow" data-n="05">How We Work</p>
+      <h2 class="section-heading">Simple Steps to Your <em>Dream Home</em></h2>
+    </div>
+  </div>
+
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-n">01</div><div class="step-bar"></div>
+      <div class="step-title">Contact Us</div>
+      <p class="step-desc">Get in touch with our team to explore available villas and receive complete project details.</p>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-n">02</div><div class="step-bar"></div>
+      <div class="step-title">Site Visit</div>
+      <p class="step-desc">Visit the project location to experience the surroundings, construction quality, and amenities firsthand.</p>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-n">03</div><div class="step-bar"></div>
+      <div class="step-title">Discussion</div>
+      <p class="step-desc">Discuss pricing, customization options, and clarify all details to match your requirements.</p>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-n">04</div><div class="step-bar"></div>
+      <div class="step-title">Agreement</div>
+      <p class="step-desc">Finalize the booking with a transparent agreement ensuring complete clarity and trust.</p>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-n">05</div><div class="step-bar"></div>
+      <div class="step-title">Deal Closure</div>
+      <p class="step-desc">Complete the process and step into your dream home with confidence and satisfaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  TESTIMONIALS
+  CHANGE: Replace all 3 placeholders with real client quotes,
+  names, and which villa they purchased.
+============================================================ -->
+<!--<section class="testimonials" id="testimonials">
+  <div class="sec-hdr reveal">
+    <div>
+      <p class="section-eyebrow" data-n="06">What Our Clients Say</p>
+      <h2 class="section-heading">Stories of <em>Home</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-q">"</div>
+      <p class="testi-text">Ciel Homes gave us more than a house — they gave us a life. Waking up surrounded by greenery, in a home this beautiful and thoughtfully built, is something we dreamed of for years.</p>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Suresh &amp; Anitha Varghese</div> 
+      <div class="testi-role">Ciel Kunnackal, Muvattupuzha</div>  
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-q">"</div>
+      <p class="testi-text">The attention to detail in our villa is extraordinary. Every corner has been thought through. The garden, the light, the finishes — it's exactly how we imagined a luxury home to be.</p>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Rajan &amp; Deepa Pillai</div>
+      <div class="testi-role">Ciel Verdant, Muvattupuzha</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-q">"</div>
+      <p class="testi-text">From our first meeting to the day they handed us the keys, the team at Ciel was transparent, professional, and genuinely passionate about getting every detail right.</p>
+      <div class="testi-divider"></div>
+      <div class="testi-name">Thomas &amp; Suja George</div>
+      <div class="testi-role">Ciel Kunnackal, Muvattupuzha</div>
+    </div>
+  </div>
+</section>-->
+
+<!-- ============================================================
+  ABOUT THE BUILDER
+  CHANGE:
+  – img src → real founder / team photo (portrait preferred)
+  – Heading, both body paragraphs
+  – Signature → founder's actual name
+  – Role → founder's title
+============================================================ -->
+<section class="builder" id="builder">
+  <div class="sec-hdr reveal">
+    <div>
+      <p class="section-eyebrow" data-n="07">Our Story</p>
+      <h2 class="section-heading">The People Behind<br><em>Ciel Homes</em></h2>
+    </div>
+  </div>
+  <div class="builder-grid">
+    <div class="builder-img-wrap reveal">
+      <!--
+        CHANGE: Replace with a real photo of the founder, team, or a villa interior.
+        A personal portrait builds trust with buyers.
+      -->
+      <img class="builder-img"
+           src="Images/garden_lush.jpg"
+           alt="Ciel Homes founder"
+           loading="lazy">
+      <div class="builder-img-accent"></div>
+    </div>
+    <div class="builder-text reveal">
+      <p class="section-eyebrow" data-n=""></p>
+      <!-- CHANGE: Heading -->
+      <h3 class="section-heading" style="font-size:clamp(28px,3vw,40px);">Built with Passion,<br>Delivered with <em>Pride</em></h3>
+      <!-- CHANGE: Your actual company story -->
+      <p class="builder-body">Ciel Homes was founded with a singular belief: that every family deserves a home that nourishes the soul. With deep roots in Kerala's construction landscape and a passion for design that harmonises with nature, we have <b>30 years</b> of experience refining our craft — learning from every build, and bringing that knowledge to every new project.</p>
+      <p class="builder-body" style="margin-top:-16px;">We are a small, dedicated team. That means every client gets our full attention, every villa gets our best work, and every relationship lasts well beyond the handover.</p>
+      <!-- CHANGE: Founder's real name -->
+      <div class="builder-signature">Founder, Ciel Homes</div>
+      <!-- CHANGE: Founder's title -->
+      <div class="builder-role"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+  CONTACT + FORMSPREE FORM
+
+  Formspree endpoint: https://formspree.io/f/xzdkdgje
+  Do NOT change the form action URL.
+
+  CHANGE:
+  – Address, phone number, email, opening hours
+  – Dropdown option labels (keep the value="" matching VILLAS keys in script.js)
+  – Phone number in the tel: link
+============================================================ -->
+<section class="contact" id="contact">
+  <div class="reveal">
+    <p class="section-eyebrow" data-n="08">Get In Touch</p>
+    <h2 class="section-heading">Begin Your<br><em>Ciel</em> Journey</h2>
+    <p class="contact-text">Whether you're interested in our ready-to-move villas or planning ahead, our team is here to help. Reach out and we'll respond within 24 hours.</p>
+    <!-- CHANGE: Replace all placeholder contact details below -->
+    <div class="contact-details">
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--leaf)">
+          <path d="M12 21c-4.418-4.5-7-8.134-7-10.5a7 7 0 0114 0C19 13.866 16.418 17.5 12 21z"/>
+          <circle cx="12" cy="10.5" r="2.5"/>
+        </svg>
+        Kunnackal, Muvattupuzha, Ernakulam, Kerala  <!-- CHANGE: Real address -->
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--leaf)">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        <a href="tel:+919544118379" style="color:inherit;">+91 95441 18379</a>  <!-- CHANGE: Real phone -->
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--leaf)">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+        <a href="mailto:hello@cielhomes.in" style="color:inherit;">hello@cielhomes.in</a>  <!-- CHANGE: Real email -->
+      </div>
+      <div class="contact-item">
+        <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--leaf)">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12,6 12,12 16,14"/>
+        </svg>
+        Monday – Saturday, 9 AM – 6 PM  <!-- CHANGE: Hours -->
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <!--
+      FORMSPREE FORM
+      action = your Formspree endpoint — do NOT change this URL
+      Each input name="" attribute determines the label in your email inbox.
+    -->
+    <form class="cta-form" id="contactForm"
+          action="https://formspree.io/f/xzdkdgje"
+          method="POST">
+      <div class="form-row2">
+        <div>
+          <label class="flabel" for="firstName">First Name *</label>
+          <input type="text" id="firstName" name="first_name" class="finput"
+                 placeholder="Your name" required autocomplete="given-name">
+        </div>
+        <div>
+          <label class="flabel" for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="last_name" class="finput"
+                 placeholder="Last name" autocomplete="family-name">
+        </div>
+      </div>
+      <div>
+        <label class="flabel" for="phone">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" class="finput"
+               placeholder="+91 00000 00000" required autocomplete="tel">
+      </div>
+      <div>
+        <label class="flabel" for="email">Email Address</label>
+        <input type="email" id="email" name="email" class="finput"
+               placeholder="you@email.com" autocomplete="email">
+      </div>
+      <div>
+        <label class="flabel" for="interest">I'm Interested In *</label>
+        <!-- CHANGE: Update option labels as your villa availability changes.
+             Keep value="" matching the villa keys in script.js VILLAS object. -->
+        <select id="interest" name="interested_in" class="fselect" required>
+          <option value="">Select a villa</option>
+          <option value="Ciel Kunnackal">Ciel Kunnackal — Ready · 4BHK · 2,500 sq.ft</option>
+          <option value="Ciel Verdant">Ciel Verdant — Ready · 4BHK · 2,600 sq.ft</option>
+          <option value="Ciel Serene I">Ciel Serene I — Under Construction</option>
+          <option value="Ciel Serene II">Ciel Serene II — Under Construction</option>
+          <option value="General Enquiry">General Enquiry / Custom Project</option>
+        </select>
+      </div>
+      <div>
+        <label class="flabel" for="message">Message</label>
+        <textarea id="message" name="message" class="ftextarea"
+                  placeholder="Tell us about your requirements or preferred visit time..."></textarea>
+      </div>
+      <button type="submit" class="fsubmit" id="submitBtn">Send Enquiry</button>
+      <div class="form-msg" id="formSuccess">Your enquiry has been received. We'll be in touch within 24 hours.</div>
+      <div class="form-msg" id="formError">Something went wrong. Please try again or call us directly.</div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+  FOOTER
+  CHANGE: Tagline, villa list, contact details, social URLs, year.
+============================================================ -->
+<footer>
+  <div class="f-brand">
+    <div class="logo-name">CIEL HOMES</div>                              <!-- CHANGE: Name -->
+    <div class="logo-motto">Where Nature Meets Luxury</div>               <!-- CHANGE: Tagline -->
+    <!-- CHANGE: Short footer description -->
+    <p class="f-tagline">Premium 4BHK villas in Kerala's most serene and well-connected landscapes.</p>
+  </div>
+  <div>
+    <p class="f-col-title">Navigate</p>
+    <ul class="f-links">
+      <li><a href="#villas">Our Villas</a></li>
+      <li><a href="#why">Why Ciel Homes</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#process">Our Process</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="f-col-title">Our Villas</p>
+    <!-- CHANGE: Update villa names to match your portfolio -->
+    <ul class="f-links">
+      <li><a href="#villas">Ciel Villa I</a></li>
+      <li><a href="#villas">Ciel Villa II</a></li>
+      <li><a href="#villas">Ciel Villa VI</a></li>
+      <li><a href="#villas">Ciel Villa VII</a></li>
+    </ul>
+  </div>
+  <div>
+    <p class="f-col-title">Contact</p>
+    <ul class="f-links">
+      <li><a href="#">Muvattupuzha, Kerala</a></li>
+      <li><a href="tel:+919544118379">+91 95441 18379</a></li>                <!-- CHANGE -->
+      <li><a href="mailto:hello@cielhomes.in">hello@cielhomes.in</a></li>     <!-- CHANGE -->
+    </ul>
+  </div>
+</footer>
+
+<div class="f-btm">
+  <p class="f-copy">© 2025 Ciel Homes. All rights reserved.</p>  <!-- CHANGE: Year -->
+  <div class="f-social">
+    <!--
+      CHANGE: Replace each # with your real social media profile URLs.
+      Instagram:  https://instagram.com/yourhandle
+      Facebook:   https://facebook.com/yourpage
+      WhatsApp:   https://wa.me/91XXXXXXXXXX   (your number, no spaces)
+    -->
+    <a href="https://www.instagram.com/ciel_homes_/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/people/Ciel-Homes/61570660924950/" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://wa.me/919544118379" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</div>
+
+<!-- ============================================================
+  FLOATING WHATSAPP BUTTON
+  Visible on desktop only — hidden on mobile via CSS.
+  On mobile, users use the sticky bottom bar instead.
+
+  CHANGE: Replace 91XXXXXXXXXX with your WhatsApp number (no spaces).
+  The ?text= is the pre-filled message — update it as you like.
+  URL-encode spaces as %20 and special characters.
+============================================================ -->
+<a class="fab-whatsapp"
+   id="fabWhatsapp"
+   href="https://wa.me/919544118379?text=Hi%20Ciel%20Homes%2C%20I'm%20interested%20in%20your%20villas.%20Could%20you%20share%20more%20details%3F"
+   target="_blank" rel="noopener"
+   aria-label="Chat on WhatsApp">
+  <div class="fab-label">Chat on WhatsApp</div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- ============================================================
+  STICKY MOBILE BOTTOM BAR
+  Visible on mobile only — hidden on desktop via CSS.
+  Provides one-tap Call and WhatsApp access.
+
+  CHANGE:
+  – Call href: replace +910000000000 with your real number
+  – WhatsApp href: replace 91XXXXXXXXXX with your WhatsApp number
+============================================================ -->
+<div class="mobile-cta-bar" role="complementary" aria-label="Quick contact">
+  <a href="tel:+919544118379" class="mobile-cta-btn call">           <!-- CHANGE: number -->
+    <svg viewBox="0 0 24 24">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.54a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    Call Us
+  </a>
+  <a href="https://wa.me/919544118379?text=Hi%20Ciel%20Homes%2C%20I'm%20interested%20in%20your%20villas."
+     target="_blank" rel="noopener"
+     class="mobile-cta-btn whatsapp">                                  <!-- CHANGE: number -->
+    <svg viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    WhatsApp
+  </a>
+</div>
+
+<!-- All JavaScript — loaded at end of body for performance -->
+<script src="script.js"></script>
+</body>
+</html>
