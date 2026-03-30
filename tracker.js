@@ -1,32 +1,19 @@
 /* ============================================================
    CIEL HOMES — tracker.js
-   Visitor analytics: tracks page visits, section views,
-   clicks, villa opens, and time on page.
-   Data is sent automatically to Google Sheets.
-
-   SETUP: Set your Google Apps Script Web App URL below.
-   See the setup guide for instructions.
+   Tracks page visits, section views, clicks, villa opens,
+   time on page. Sends data to Google Sheets with
+   session color-coding and full geolocation.
 ============================================================ */
 
 (function () {
 
-  /* ──────────────────────────────────────────────
-     CONFIG — CHANGE THIS after setting up your
-     Google Apps Script Web App URL.
-  ────────────────────────────────────────────── */
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyVwDXzZVLMHj-zvZ1C3apKNA19xf0x3Sg2KXEsvBKT7hd0piOAK6sg2ZLGF2jUA_OD/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzos0t2bKAomrajwJ4thnk8jk2l5w0L4VBqonfczVJGvFk5He8nwxKSzg0TCmrCxSup/exec';
 
-  /* ──────────────────────────────────────────────
-     SESSION SETUP
-     A unique ID per visit so you can group events
-     from the same user together in the sheet.
-  ────────────────────────────────────────────── */
+  /* ── SESSION ── */
   const sessionId = 'sess_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now();
   const pageStart = Date.now();
 
-  /* ──────────────────────────────────────────────
-     DEVICE INFO
-  ────────────────────────────────────────────── */
+  /* ── DEVICE INFO ── */
   const device = {
     type:     window.matchMedia('(pointer: coarse)').matches ? 'Mobile' : 'Desktop',
     browser:  getBrowser(),
@@ -45,78 +32,69 @@
     return 'Other';
   }
 
-  /* ──────────────────────────────────────────────
-     IP GEOLOCATION (free, no API key needed)
-     Fetches approximate city & country.
-  ────────────────────────────────────────────── */
-  let geoCity    = 'Fetching…';
-  let geoCountry = 'Fetching…';
+  /* ── GEOLOCATION (city, region, country, lat, lng) ── */
+  let geoCity    = 'Fetching';
+  let geoRegion  = 'Fetching';
+  let geoCountry = 'Fetching';
+  let geoLat     = '';
+  let geoLng     = '';
 
   fetch('https://ipapi.co/json/')
     .then(r => r.json())
     .then(d => {
-      geoCity    = d.city    || 'Unknown';
+      geoCity    = d.city         || 'Unknown';
+      geoRegion  = d.region       || 'Unknown';
       geoCountry = d.country_name || 'Unknown';
+      geoLat     = d.latitude     || '';
+      geoLng     = d.longitude    || '';
     })
     .catch(() => {
-      geoCity    = 'Unavailable';
-      geoCountry = 'Unavailable';
+      geoCity = geoRegion = geoCountry = 'Unavailable';
     });
 
-  /* ──────────────────────────────────────────────
-     CORE SEND FUNCTION
-     Packages an event and POSTs it to the sheet.
-  ────────────────────────────────────────────── */
+  /* ── CORE SEND FUNCTION ── */
   function send(eventType, details) {
     if (!SHEET_URL || SHEET_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') return;
 
     const payload = {
       sessionId,
-      timestamp:   new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      timestamp:  new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
       eventType,
-      details:     details || '',
-      city:        geoCity,
-      country:     geoCountry,
-      deviceType:  device.type,
-      browser:     device.browser,
-      screen:      device.screen,
-      language:    device.language,
-      referrer:    device.referrer,
+      details:    details || '',
+      city:       geoCity,
+      region:     geoRegion,
+      country:    geoCountry,
+      lat:        geoLat,
+      lng:        geoLng,
+      deviceType: device.type,
+      browser:    device.browser,
+      screen:     device.screen,
+      language:   device.language,
+      referrer:   device.referrer,
     };
 
-    /* Use no-cors mode to avoid CORS preflight issues with Google Apps Script */
     fetch(SHEET_URL, {
-      method: 'POST',
-      mode: 'no-cors',
+      method:  'POST',
+      mode:    'no-cors',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload),
+      body:    JSON.stringify(payload),
     }).catch(() => {});
   }
 
-  /* ──────────────────────────────────────────────
-     EVENT 1: PAGE VISIT
-     Fires immediately on load.
-  ────────────────────────────────────────────── */
+  /* ── EVENT 1: PAGE VISIT ── */
   window.addEventListener('load', () => {
     send('Page Visit', 'User landed on the website');
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 2: TIME ON PAGE
-     Fires when the user leaves / closes the tab.
-  ────────────────────────────────────────────── */
+  /* ── EVENT 2: TIME ON PAGE ── */
   window.addEventListener('pagehide', () => {
     const seconds = Math.round((Date.now() - pageStart) / 1000);
     const mins    = Math.floor(seconds / 60);
     const secs    = seconds % 60;
-    const label   = mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
-    send('Time on Page', label);
+    send('Time on Page', mins > 0 ? mins + 'm ' + secs + 's' : secs + 's');
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 3: SECTION SCROLL (which sections they browsed)
-     Uses IntersectionObserver to fire once per section.
-  ────────────────────────────────────────────── */
+  /* ── EVENT 3: SECTION SCROLL ── */
   const sectionNames = {
     'home':     'Hero / Home',
     'about':    'About / Philosophy',
@@ -130,10 +108,8 @@
   const sectionObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id    = entry.target.id;
-        const label = sectionNames[id] || id;
-        send('Section Viewed', label);
-        sectionObs.unobserve(entry.target); /* only track once per session */
+        send('Section Viewed', sectionNames[entry.target.id] || entry.target.id);
+        sectionObs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.3 });
@@ -143,10 +119,7 @@
     if (el) sectionObs.observe(el);
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 4: VILLA CARD CLICKS
-     Detects which villa modal was opened.
-  ────────────────────────────────────────────── */
+  /* ── EVENT 4: VILLA CARD CLICKS ── */
   const villaLabels = {
     kunnackal: 'Villa 1 (Kunnackal)',
     verdant:   'Villa 2 (Verdant)',
@@ -156,57 +129,40 @@
 
   document.querySelectorAll('.villa-card, .uc-card').forEach(card => {
     card.addEventListener('click', () => {
-      const key   = card.dataset.villa;
-      const label = villaLabels[key] || key;
-      send('Villa Opened', label);
+      send('Villa Opened', villaLabels[card.dataset.villa] || card.dataset.villa);
     });
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 5: CTA BUTTON CLICKS
-  ────────────────────────────────────────────── */
-  const ctaSelectors = [
-    { selector: '.nav-cta',             label: 'Nav — Enquire Now' },
-    { selector: '.mobile-nav-cta',      label: 'Mobile Nav — Enquire Now' },
-    { selector: 'a[href="#villas"].btn-primary', label: 'Hero — Explore Villas' },
-    { selector: 'a[href="#contact"].btn-ghost',  label: 'Hero — Book Consultation' },
-    { selector: '#modalEnquireBtn',     label: 'Modal — Enquire About Villa' },
-    { selector: '.fsubmit',             label: 'Form — Submit Enquiry' },
-  ];
-
-  ctaSelectors.forEach(({ selector, label }) => {
-    document.querySelectorAll(selector).forEach(el => {
-      el.addEventListener('click', () => send('CTA Clicked', label));
+  /* ── EVENT 5: CTA CLICKS ── */
+  [
+    { selector: '.nav-cta',                       label: 'Nav — Enquire Now' },
+    { selector: '.mobile-nav-cta',                label: 'Mobile Nav — Enquire Now' },
+    { selector: 'a[href="#villas"].btn-primary',  label: 'Hero — Explore Villas' },
+    { selector: 'a[href="#contact"].btn-ghost',   label: 'Hero — Book Consultation' },
+    { selector: '#modalEnquireBtn',               label: 'Modal — Enquire About Villa' },
+    { selector: '.fsubmit',                       label: 'Form — Submit Enquiry' },
+  ].forEach(function(item) {
+    document.querySelectorAll(item.selector).forEach(function(el) {
+      el.addEventListener('click', function() { send('CTA Clicked', item.label); });
     });
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 6: NAV LINK CLICKS
-  ────────────────────────────────────────────── */
-  document.querySelectorAll('.nav-links a, .mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      send('Nav Click', link.textContent.trim());
-    });
+  /* ── EVENT 6: NAV CLICKS ── */
+  document.querySelectorAll('.nav-links a, .mobile-nav-link').forEach(function(link) {
+    link.addEventListener('click', function() { send('Nav Click', link.textContent.trim()); });
   });
 
-  /* ──────────────────────────────────────────────
-     EVENT 7: WHATSAPP & CALL CLICKS
-  ────────────────────────────────────────────── */
-  document.querySelectorAll('.fab-whatsapp, .mobile-cta-btn.whatsapp').forEach(el => {
-    el.addEventListener('click', () => send('WhatsApp Clicked', 'WhatsApp button'));
+  /* ── EVENT 7: WHATSAPP & CALL ── */
+  document.querySelectorAll('.fab-whatsapp, .mobile-cta-btn.whatsapp').forEach(function(el) {
+    el.addEventListener('click', function() { send('WhatsApp Clicked', 'WhatsApp button'); });
+  });
+  document.querySelectorAll('.mobile-cta-btn.call, a[href^="tel:"]').forEach(function(el) {
+    el.addEventListener('click', function() { send('Call Clicked', el.href); });
   });
 
-  document.querySelectorAll('.mobile-cta-btn.call, a[href^="tel:"]').forEach(el => {
-    el.addEventListener('click', () => send('Call Clicked', el.href));
-  });
-
-  /* ──────────────────────────────────────────────
-     EVENT 8: SOCIAL LINK CLICKS
-  ────────────────────────────────────────────── */
-  document.querySelectorAll('.f-social a').forEach(link => {
-    link.addEventListener('click', () => {
-      send('Social Clicked', link.textContent.trim());
-    });
+  /* ── EVENT 8: SOCIAL CLICKS ── */
+  document.querySelectorAll('.f-social a').forEach(function(link) {
+    link.addEventListener('click', function() { send('Social Clicked', link.textContent.trim()); });
   });
 
 })();
