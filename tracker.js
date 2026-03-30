@@ -14,7 +14,7 @@
      CONFIG — CHANGE THIS after setting up your
      Google Apps Script Web App URL.
   ────────────────────────────────────────────── */
-  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwKcLXhYdqo3aqHE-XW1ZO0xaKZRruocq5SRIZlimk5NxtT8hD1en5Bz7Z2G4MQZxLn/exec';
+  const SHEET_URL = 'hhttps://script.google.com/macros/s/AKfycbyVwDXzZVLMHj-zvZ1C3apKNA19xf0x3Sg2KXEsvBKT7hd0piOAK6sg2ZLGF2jUA_OD/exec';
 
   /* ──────────────────────────────────────────────
      SESSION SETUP
@@ -84,14 +84,13 @@
       referrer:    device.referrer,
     };
 
-    /* Use sendBeacon for reliability (especially on page unload) */
-    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(SHEET_URL, blob);
-    } else {
-      fetch(SHEET_URL, { method: 'POST', body: JSON.stringify(payload), keepalive: true })
-        .catch(() => {});
-    }
+    /* Use no-cors mode to avoid CORS preflight issues with Google Apps Script */
+    fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
   }
 
   /* ──────────────────────────────────────────────
