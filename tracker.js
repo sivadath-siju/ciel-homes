@@ -14,7 +14,7 @@
      CONFIG — CHANGE THIS after setting up your
      Google Apps Script Web App URL.
   ────────────────────────────────────────────── */
-  const SHEET_URL = 'hhttps://script.google.com/macros/s/AKfycbyVwDXzZVLMHj-zvZ1C3apKNA19xf0x3Sg2KXEsvBKT7hd0piOAK6sg2ZLGF2jUA_OD/exec';
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyVwDXzZVLMHj-zvZ1C3apKNA19xf0x3Sg2KXEsvBKT7hd0piOAK6sg2ZLGF2jUA_OD/exec';
 
   /* ──────────────────────────────────────────────
      SESSION SETUP
