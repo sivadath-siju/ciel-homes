@@ -145,7 +145,6 @@ features: [
     /* CHANGE: Photos */
     images: [
       'Images/Villa_7/elevation.jpeg',
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=960&q=80',
     ],
     desc: 'Ciel Serene II is our latest project, currently in the early stages of construction with an estimated completion in Late 2025. Pre-launch registrations are open. The villa will follow Ciel\'s signature 4BHK specification with all the community amenities you\'d expect.',
     price: 'Pre-launch Pricing Available',
