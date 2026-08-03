@@ -787,7 +787,9 @@ nav.scrolled {
   color:var(--cream); padding:14px 16px;
   font-family:'DM Sans', sans-serif; font-size:14px; font-weight:300;
   outline:none; transition:border-color .3s, background .3s;
-  width:100%; min-height:44px; -webkit-appearance:none;
+  width:100%; min-height:44px; 
+appearance: none;
+-webkit-appearance: none;
 }
 .finput::placeholder, .ftextarea::placeholder { color:rgba(122,144,128,.5); }
 .finput:focus, .fselect:focus, .ftextarea:focus {
