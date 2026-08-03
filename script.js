@@ -139,14 +139,20 @@ features: [
   },
 
   serene2: {
-    name:   'Villa VII',
+    name:   'Villa VI',
     status: 'Under Construction',
     isUC:   true,
     /* CHANGE: Photos */
     images: [
       'Images/Villa_7/elevation.jpeg',
+      'Images/Villa_7/Bedroom_2.jpeg',
+      'Images/Villa_7/Bedroom_3.jpg',
+      'Images/Villa_7/Bedroom_4.jpg',
+      'Images/Villa_7/Interior_bed.jpg',
+      'Images/Villa_7/Interior_TV.jpg',
+      'Images/Villa_7/Kitchen.jpg',
     ],
-    desc: 'Ciel Serene II is our latest project, currently in the early stages of construction with an estimated completion in Late 2025. Pre-launch registrations are open. The villa will follow Ciel\'s signature 4BHK specification with all the community amenities you\'d expect.',
+    desc: 'Our latest project, currently in the final stages of construction with an estimated completion in Late 2026. Pre-launch registrations are open. The villa will follow Ciel\'s signature 4BHK specification with all the community amenities you\'d expect.',
     price: 'Pre-launch Pricing Available',
     
 
@@ -173,6 +179,36 @@ features: [
     location: 'Muvattupuzha, Ernakulam District, Kerala',
   },
 };
+
+/* ============================================================
+   1b. FEATURED VILLA SLIDESHOW (Villa VII spotlight)
+   ─────────────────────────────────────────────────────────────
+   Builds a slow, auto-advancing crossfade slideshow inside the
+   full-width "Featured" card using VILLAS.serene2.images above.
+   CHANGE: add more photo paths to VILLAS.serene2.images (top of
+   this file) to get more slides — this code adapts automatically.
+============================================================ */
+(function initFeaturedSlideshow() {
+  const track = document.getElementById('featuredSlideshow');
+  const villa = VILLAS.serene2;
+  if (!track || !villa || !villa.images || !villa.images.length) return;
+
+  track.innerHTML = villa.images.map((src, i) =>
+    `<img class="featured-slide${i === 0 ? ' active' : ''}" src="${src}" alt="${villa.name}" loading="lazy">`
+  ).join('');
+
+  if (villa.images.length < 2) return; /* only one photo — nothing to rotate */
+
+  const slides = [...track.querySelectorAll('.featured-slide')];
+  let idx = 0;
+  const SLIDE_DURATION_MS = 5500; /* slow crossfade — ~5.5s per slide */
+
+  setInterval(() => {
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, SLIDE_DURATION_MS);
+})();
 
 /* ============================================================
    2. CUSTOM CURSOR

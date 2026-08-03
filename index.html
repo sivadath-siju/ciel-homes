@@ -156,6 +156,37 @@
     <a href="#contact" class="link-arrow">Enquire About Availability</a>
   </div>
 
+  <!-- ============================================================
+       FEATURED VILLA — Villa VII spotlight
+       This is the main highlight of the villas section: a large,
+       full-width card with a slow auto-advancing image slideshow.
+       Slides are pulled from VILLAS.serene2.images in script.js —
+       add more image paths there to get more slides in rotation.
+       CHANGE: eyebrow text, meta specs, description, progress %.
+  ============================================================ -->
+  <p class="sub-label featured reveal">Spotlight — Our Latest Project</p>
+  <div class="featured-wrap reveal">
+    <div class="uc-card featured-card" data-villa="serene2" role="button" tabindex="0" aria-label="View Ciel Villa VII details">
+      <div class="featured-slideshow" id="featuredSlideshow" aria-hidden="true"></div>
+      <div class="uc-overlay featured-overlay"></div>
+      <div class="uc-badge featured-badge">★ Featured — Under Construction</div>
+      <div class="uc-info featured-info">
+        <p class="featured-eyebrow">Our Latest Project</p>
+        <div class="uc-name featured-name">Villa VII</div>
+        <div class="uc-meta featured-meta">4 BHK &nbsp;·&nbsp; 2,530 sq.ft &nbsp;·&nbsp; 9 Cents &nbsp;·&nbsp; Muvattupuzha</div>
+        <p class="featured-desc">Ciel Serene II — our latest project, following Ciel's signature 4BHK specification with full community amenities and premium finishes throughout.</p>
+        <div class="prog-bar">
+          <div class="prog-fill" data-width="75"></div>
+        </div>
+        <div class="prog-lbl">
+          <span>Progress</span>
+          <strong>75% — Est. Mid 2026</strong>
+        </div>
+        <span class="featured-tap-hint">View Full Details →</span>
+      </div>
+    </div>
+  </div>
+
   <!-- COMPLETED VILLAS -->
   <p class="sub-label done reveal">Completed — Sold Out</p>
   <div class="built-grid">
@@ -227,27 +258,7 @@
       </div>
     </div>
 
-    <!-- ——— UC VILLA 2 ——— -->
-    <div class="uc-card reveal" data-villa="serene2" role="button" tabindex="0" aria-label="View Ciel Serene II details">
-      <img class="uc-img"
-           src="Images/Villa_7/elevation.jpeg"
-           alt="Ciel Serene II — Under Construction"
-           loading="lazy">
-      <div class="uc-overlay"></div>
-      <div class="uc-badge">Under Construction</div>
-      <div class="uc-info">
-        <div class="uc-name">Villa VII</div>
-        <div class="uc-meta">4 BHK &nbsp;·&nbsp; 2,530 sq.ft &nbsp;·&nbsp; Muvattupuzha</div>
-        <div class="prog-bar">
-          <!-- CHANGE: % -->
-          <div class="prog-fill" data-width="75"></div>
-        </div>
-        <div class="prog-lbl">
-          <span>Progress</span>
-          <strong>75% — Est. Mid 2026</strong>                               <!-- CHANGE -->
-        </div>
-      </div>
-    </div>
+    <!-- Villa VII now lives above as the full-width Featured spotlight card. -->
   </div>
 
   <!-- AMENITY BAR — features shared across all villas -->

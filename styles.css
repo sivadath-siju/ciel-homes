@@ -412,6 +412,7 @@ nav.scrolled {
 
 /* Under construction grid */
 .uc-grid { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.uc-grid .uc-card:only-child { grid-column:1 / -1; }
 .uc-card { position:relative; overflow:hidden; cursor:pointer; }
 .uc-card:focus { outline:2px solid var(--leaf); outline-offset:2px; }
 .uc-img {
@@ -445,6 +446,74 @@ nav.scrolled {
 .prog-lbl { display:flex; justify-content:space-between; margin-top:6px; }
 .prog-lbl span { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
 .prog-lbl strong { font-size:9px; color:var(--gold); font-weight:400; letter-spacing:.5px; }
+
+/* ============================================================
+   FEATURED VILLA — Villa VII spotlight card
+   Large full-width hero card with a slow auto-crossfading
+   image slideshow behind the villa info. Reuses .uc-card /
+   .uc-overlay / .uc-badge / .uc-info as a base (see above) so
+   it still hooks into the modal, progress-bar, and tracking
+   logic automatically — these rules override that base.
+============================================================ */
+.sub-label.featured { color:var(--gold); }
+
+.featured-wrap { margin-bottom:40px; }
+
+.featured-card {
+  min-height:560px;
+  display:flex;
+  align-items:flex-end;
+}
+
+/* Slideshow layer — stacked images cross-fading slowly */
+.featured-slideshow { position:absolute; inset:0; background:var(--deep); }
+.featured-slide {
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:0;
+  transition:opacity 1.8s ease;
+}
+.featured-slide.active { opacity:1; }
+.featured-card:hover .featured-slide.active { transform:scale(1.04); transition:opacity 1.8s ease, transform 6s ease; }
+
+.featured-overlay {
+  background:linear-gradient(to top, rgba(20,42,29,.96) 0%, rgba(20,42,29,.25) 60%, rgba(20,42,29,.1) 100%);
+}
+
+.featured-badge {
+  top:24px; left:24px; right:auto;
+  background:rgba(196,162,101,.14); border-color:rgba(196,162,101,.4);
+  font-size:10px; letter-spacing:3px; padding:8px 16px;
+}
+
+.featured-info { padding:44px 48px; max-width:640px; }
+.featured-eyebrow {
+  font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--sage); margin-bottom:10px;
+  display:flex; align-items:center; gap:10px;
+}
+.featured-eyebrow::before { content:''; width:24px; height:1px; background:currentColor; flex-shrink:0; }
+.featured-name {
+  font-size:48px; margin-bottom:12px;
+}
+.featured-meta { font-size:13px; margin-bottom:16px; }
+.featured-desc {
+  font-size:14px; line-height:1.85; color:rgba(244,239,228,.65);
+  margin-bottom:20px; max-width:520px;
+}
+.featured-card .prog-bar { max-width:360px; }
+.featured-card .prog-lbl { max-width:360px; }
+.featured-tap-hint {
+  display:inline-block; margin-top:20px;
+  font-size:10px; letter-spacing:2.5px; text-transform:uppercase;
+  color:var(--gold-lt);
+}
+
+@media (max-width:860px) {
+  .featured-card { min-height:440px; }
+  .featured-name { font-size:36px; }
+  .featured-info { padding:28px 24px; }
+}
 
 /* Amenity bar */
 .amenity-bar {
