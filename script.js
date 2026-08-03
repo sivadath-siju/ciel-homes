@@ -105,7 +105,7 @@ features: [
   },
 
   serene1: {
-    name:   'Villa VI',
+    name:   'Villa VII',
     status: 'Under Construction',
     isUC:   true,
     /* CHANGE: Use site progress photos or architectural renders */
@@ -181,7 +181,7 @@ features: [
 };
 
 /* ============================================================
-   1b. FEATURED VILLA SLIDESHOW (Villa VII spotlight)
+   1b. FEATURED VILLA SLIDESHOW (Villa VI spotlight)
    ─────────────────────────────────────────────────────────────
    Builds a slow, auto-advancing crossfade slideshow inside the
    full-width "Featured" card using VILLAS.serene2.images above.
