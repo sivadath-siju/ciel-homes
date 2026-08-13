@@ -287,8 +287,12 @@
     <button class="modal-close" id="modalClose" aria-label="Close">&#215;</button>
     <div class="modal-slider" id="modalSlider">
       <div class="slider-track" id="sliderTrack"></div>
-      <button class="slider-prev" id="sliderPrev" aria-label="Previous image">&#8249;</button>
-      <button class="slider-next" id="sliderNext" aria-label="Next image">&#8250;</button>
+      <button class="slider-prev" id="sliderPrev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 4.5 7 12l7.5 7.5M8 12h9"/></svg>
+      </button>
+      <button class="slider-next" id="sliderNext" aria-label="Next image">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 4.5 7.5 7.5-7.5 7.5M16 12H7"/></svg>
+      </button>
       <div class="slider-dots"   id="sliderDots"></div>
     </div>
     <div class="modal-body">
@@ -309,6 +313,12 @@
       <div class="modal-location-row" id="modalLocation"></div>
     </div>
   </div>
+</div>
+
+<!-- Full-screen image viewer — populated from the open villa's gallery. -->
+<div class="image-gallery" id="imageGallery" role="dialog" aria-modal="true" aria-label="Villa image gallery">
+  <button class="image-gallery-close" id="imageGalleryClose" aria-label="Close full-screen gallery">&#215;</button>
+  <div class="image-gallery-scroll" id="imageGalleryScroll"></div>
 </div>
 
 <!-- ============================================================

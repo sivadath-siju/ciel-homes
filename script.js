@@ -340,9 +340,30 @@ const modalSpecs      = document.getElementById('modalSpecs');
 const modalFeatures   = document.getElementById('modalFeatures');
 const modalEnquireBtn = document.getElementById('modalEnquireBtn');
 const modalLocation   = document.getElementById('modalLocation');
+const imageGallery       = document.getElementById('imageGallery');
+const imageGalleryScroll = document.getElementById('imageGalleryScroll');
+const imageGalleryClose  = document.getElementById('imageGalleryClose');
 
 let currentSlide = 0;
 let totalSlides  = 0;
+let activeVillaKey = null;
+
+/* Friendly, shareable villa links: #villa=1, #villa=2, #villa=6, #villa=7. */
+const VILLA_LINK_IDS = {
+  kunnackal: '1',
+  verdant: '2',
+  serene1: '7',
+  serene2: '6',
+};
+
+function villaKeyFromUrl() {
+  const villaId = new URLSearchParams(window.location.hash.slice(1)).get('villa');
+  return Object.entries(VILLA_LINK_IDS).find(([, id]) => id === villaId)?.[0] || null;
+}
+
+function villaUrl(villaKey) {
+  return `#villa=${VILLA_LINK_IDS[villaKey]}`;
+}
 
 /* Move to a specific slide index */
 function goToSlide(n) {
@@ -356,10 +377,33 @@ function goToSlide(n) {
 sliderPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
 sliderNext.addEventListener('click', () => goToSlide(currentSlide + 1));
 
+function openImageGallery() {
+  const villa = VILLAS[activeVillaKey];
+  if (!villa) return;
+
+  imageGalleryScroll.innerHTML = villa.images.map((src, index) =>
+    `<div class="image-gallery-frame"><img class="image-gallery-img" src="${src}" alt="${villa.name} — image ${index + 1}" loading="lazy"></div>`
+  ).join('');
+  imageGallery.classList.add('open');
+  imageGalleryScroll.scrollTop = imageGalleryScroll.clientHeight * currentSlide;
+  imageGalleryClose.focus();
+}
+
+function closeImageGallery() {
+  imageGallery.classList.remove('open');
+  imageGalleryScroll.innerHTML = '';
+}
+
+sliderTrack.addEventListener('click', event => {
+  if (event.target.classList.contains('slider-img')) openImageGallery();
+});
+imageGalleryClose.addEventListener('click', closeImageGallery);
+
 /* Open modal and populate with villa data */
-function openModal(villaKey) {
+function openModal(villaKey, { updateUrl = true } = {}) {
   const v = VILLAS[villaKey];
   if (!v) return;
+  activeVillaKey = villaKey;
 
   modalBadge.textContent = v.status;
   modalBadge.className   = 'modal-badge' + (v.isUC ? ' gold' : '');
@@ -421,21 +465,31 @@ function openModal(villaKey) {
 
   /* Push a history entry so the mobile back button closes the modal
      instead of navigating away from the page */
-  history.pushState({ villaModal: true }, '');
+  if (updateUrl) history.pushState({ villaModal: true, villaKey }, '', villaUrl(villaKey));
 }
 
 function closeModal() {
+  closeImageGallery();
   backdrop.classList.remove('open');
   document.body.style.overflow = '';
+  activeVillaKey = null;
 }
 
-/* Intercept the browser Back button — if our modal state is active,
-   close the modal instead of leaving the page */
-window.addEventListener('popstate', e => {
-  if (backdrop.classList.contains('open')) {
+/* Keep browser navigation and shared villa URLs in sync with the detail modal. */
+function syncModalToUrl() {
+  const villaKey = villaKeyFromUrl();
+  if (villaKey) {
+    if (!backdrop.classList.contains('open') || activeVillaKey !== villaKey) {
+      openModal(villaKey, { updateUrl: false });
+    }
+  } else if (backdrop.classList.contains('open')) {
     closeModal();
   }
-});
+}
+
+window.addEventListener('popstate', syncModalToUrl);
+window.addEventListener('hashchange', syncModalToUrl);
+syncModalToUrl();
 
 /* Attach click and keyboard handlers to all villa cards */
 document.querySelectorAll('.villa-card, .uc-card').forEach(card => {
@@ -451,13 +505,23 @@ document.querySelectorAll('.villa-card, .uc-card').forEach(card => {
    so we only need to call history.back() when the modal is open. */
 function closeModalWithHistory() {
   if (backdrop.classList.contains('open')) {
-    history.back(); /* triggers popstate → closeModal() */
+    if (history.state?.villaModal) {
+      history.back(); /* triggers popstate → syncModalToUrl() */
+    } else {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      closeModal();
+    }
   }
 }
 
 modalClose.addEventListener('click', closeModalWithHistory);
 backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModalWithHistory(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalWithHistory(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (imageGallery.classList.contains('open')) closeImageGallery();
+    else closeModalWithHistory();
+  }
+});
 
 /* ============================================================
    7. FORMSPREE AJAX SUBMISSION
