@@ -114,7 +114,7 @@ features: [
       'Images/Villa_6/3d_2.jpeg',
       'Images/Villa_6/3d_3.jpeg',
     ],
-    desc: 'Villa VI is currently under construction and will be ready for possession in Mid 2026. It follows the same premium specification as our completed villas — fully furnished, gated community, private garden, and swimming pool access. Pre-launch enquiries are welcome',
+    desc: 'Villa VII is currently under construction and will be ready for possession in Mid 2026. It follows the same premium specification as our completed villas — fully furnished, gated community, private garden, and swimming pool access. Pre-launch enquiries are welcome',
 
 price: 'Contact Us for Pricing',
 
@@ -158,7 +158,7 @@ features: [
 
 specs: {
   'Bedrooms': '4 BHK',
-  'Built-up': '2530 sq.ft',
+  'Built-up': '2652 sq.ft',
   'Land': '9 Cents',
   'Location': 'Kunnackal, Muvattupuzha',
   'Completion': '75% Completed',
