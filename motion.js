@@ -71,7 +71,7 @@ if (title && !reduce) {
 const heroBg = document.getElementById('heroBg');
 const hero = document.getElementById('home');
 if (heroBg && hero && !reduce) {
-  scroll(p => { heroBg.style.translate = `0 ${p * 14}%`; },
+  scroll(p => { heroBg.style.translate = `0 ${p * 12}%`; },
     { target: hero, offset: ['start start', 'end start'] });
 }
 

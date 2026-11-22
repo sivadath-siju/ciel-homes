@@ -1126,19 +1126,9 @@ footer {
 }
 
 
-/* Logo on phones — same logo.png and same see-through green panel as the
-   desktop logo, just smaller. Hidden on desktop, where the larger panel on
-   the right is shown instead. */
+/* Mobile logo: hidden on desktop (framed panel on the right is used there).
+   Phone styling is in the MOBILE FIXES block at the end of this file. */
 .hero-logo-mobile { display:none; }
-@media (max-width:900px) {
-  .hero-logo-mobile {
-    display:block; width:180px; height:auto;
-    margin-bottom:18px;
-    background:rgba(74,122,90,.7);
-    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
-    opacity:0; animation:fadeUp 1s .15s forwards;
-  }
-}
 
 .hero-logo {
   position: relative;
@@ -1434,3 +1424,43 @@ body.custom-cursor [role="button"], body.custom-cursor button, body.custom-curso
   .step-n { grid-row:span 2; margin:0; }
 }
 @media (prefers-reduced-motion: reduce) { .step:hover .step-n { transform:none; } }
+
+
+/* ============================================================
+   MOBILE FIXES — no overlapping boxes, backgroundless logo
+============================================================ */
+/* Hero photo is taller than the hero so parallax never reveals a gap */
+.hero-bg { inset:-16% 0 0 0; }
+
+/* Logo on phones: light recolour of the real logo (leaf green / cream / gold),
+   no background panel, larger. Desktop keeps its framed panel on the right. */
+@media (max-width:900px) {
+  .hero-logo-mobile {
+    display:block; width:min(84vw, 360px); height:auto;
+    margin:0 0 26px -4px;
+    filter:drop-shadow(0 2px 14px rgba(0,0,0,.55));
+    opacity:0; animation:fadeUp 1s .15s forwards;
+  }
+
+  /* Slideshow button sits on the photo's bottom-right corner —
+     clear of the "Under Construction" badge at the top-left */
+  .slideshow-toggle { top:200px; right:12px; }
+
+  /* Process: icon-left list on every phone/tablet width (no cramped columns) */
+  .steps { grid-template-columns:1fr; row-gap:36px; margin-top:48px; }
+  .step { text-align:left; display:grid; grid-template-columns:68px 1fr; column-gap:20px; padding:0; align-items:start; }
+  .step-n { grid-row:span 2; margin:0; }
+  .step-title { align-self:end; }
+  /* a thin gold line joins the circles */
+  .step:not(:last-child)::after {
+    content:''; position:absolute; left:33px; top:76px; bottom:-30px; width:1px;
+    background:linear-gradient(to bottom, rgba(209,177,120,.6), rgba(209,177,120,.1));
+  }
+  /* everything inside a section stays inside it */
+  .why-item, .step, .villa-card, .uc-card, .featured-card, .about-photo { min-width:0; }
+  h1, h2, h3, p, .why-title, .step-title { overflow-wrap:break-word; }
+}
+@media (max-width:600px) {
+  .hero-logo-mobile { width:min(86vw, 330px); margin-bottom:22px; }
+  .slideshow-toggle { min-height:44px; padding:0 14px; }
+}
