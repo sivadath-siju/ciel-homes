@@ -38,6 +38,10 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to main content</a>
+<!-- Scroll progress hairline (motion.js) -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
 <!-- Custom cursor dots (hidden on mobile via JS) -->
 <div class="cursor"      id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -84,6 +88,7 @@
   CHANGE: Eyebrow text, headline, sub-paragraph, button labels.
   Hero background image: edit the CSS in styles.css → search for "hero-bg".
 ============================================================ -->
+<main id="main" tabindex="-1">
 <section class="hero" id="home">
   <div class="hero-bg" id="heroBg"></div>
   <div class="hero-veil"></div>
@@ -658,6 +663,8 @@
   FOOTER
   CHANGE: Tagline, villa list, contact details, social URLs, year.
 ============================================================ -->
+</main>
+
 <footer>
   <div class="f-brand">
     <div class="logo-name">CIEL HOMES</div>                              <!-- CHANGE: Name -->
@@ -759,6 +766,8 @@
 <!-- All JavaScript — loaded at end of body for performance -->
 <script src="script.js"></script>
 <script src="tracker.js"></script>
+<!-- Framer Motion engine (progressive enhancement) -->
+<script type="module" src="motion.js"></script>
 
 </body>
 </html>

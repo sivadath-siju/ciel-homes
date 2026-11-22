@@ -203,10 +203,32 @@ features: [
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const slides = [...track.querySelectorAll('.featured-slide')];
+  const wrap = track.closest('.featured-wrap');
   let idx = 0;
+  let userPaused = false, hoverPaused = false;
   const SLIDE_DURATION_MS = 5500; /* slow crossfade — ~5.5s per slide */
 
+  /* Pause / play control (auto-rotating content must be stoppable).
+     Sits beside the card, not inside it, so it is a real, separate button. */
+  const ctl = document.createElement('button');
+  ctl.type = 'button';
+  ctl.className = 'slideshow-toggle';
+  ctl.setAttribute('aria-label', 'Pause photo slideshow');
+  ctl.innerHTML = '<span class="ss-icon" aria-hidden="true"></span><span class="ss-text">Pause</span>';
+  wrap.appendChild(ctl);
+  const setCtl = () => {
+    ctl.classList.toggle('is-paused', userPaused);
+    ctl.setAttribute('aria-label', userPaused ? 'Play photo slideshow' : 'Pause photo slideshow');
+    ctl.querySelector('.ss-text').textContent = userPaused ? 'Play' : 'Pause';
+  };
+  ctl.addEventListener('click', () => { userPaused = !userPaused; setCtl(); });
+  wrap.addEventListener('mouseenter', () => { hoverPaused = true; });
+  wrap.addEventListener('mouseleave', () => { hoverPaused = false; });
+  wrap.addEventListener('focusin',  () => { hoverPaused = true; });
+  wrap.addEventListener('focusout', () => { hoverPaused = false; });
+
   setInterval(() => {
+    if (userPaused || hoverPaused || document.hidden) return;
     slides[idx].classList.remove('active');
     idx = (idx + 1) % slides.length;
     slides[idx].classList.add('active');
@@ -299,7 +321,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 /* Stagger grid children */
 document.querySelectorAll('.why-grid, .steps, .built-grid, .uc-grid, .testi-grid').forEach(parent => {
   [...parent.querySelectorAll('.reveal')].forEach((child, i) => {
-    child.style.transitionDelay = (i * 0.12) + 's';
+    child.style.transitionDelay = (i * 0.08) + 's';
   });
 });
 
