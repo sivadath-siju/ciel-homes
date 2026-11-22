@@ -1004,7 +1004,7 @@ footer {
   .hamburger { display:flex; }
   .logo-name { font-size:24px; letter-spacing:3px; }
 
-  .hero { padding:0 20px 48px; height:auto; min-height:100svh; }
+  .hero { padding:112px 20px 48px; height:auto; min-height:100svh; } /* top padding keeps hero content clear of the fixed CIEL HOMES bar */
   .hero-stats { display:none; }
   .hero-scroll { display:none; }
   .hero-veil { background:linear-gradient(to top, rgba(20,42,29,.98) 0%, rgba(20,42,29,.9) 45%, rgba(20,42,29,.25) 75%, transparent 100%); }
@@ -1127,17 +1127,16 @@ footer {
 }
 
 
-/* Logo on phones — small, on a soft ivory plate (the logo's brown
-   lettering needs a light background to stay readable). Hidden on desktop,
-   where the larger logo panel on the right is shown instead. */
+/* Logo on phones — same logo.png and same see-through green panel as the
+   desktop logo, just smaller. Hidden on desktop, where the larger panel on
+   the right is shown instead. */
 .hero-logo-mobile { display:none; }
 @media (max-width:900px) {
   .hero-logo-mobile {
-    display:block; width:148px; height:auto;
-    padding:9px 12px; margin-bottom:22px;
-    background:rgba(250,247,240,.9);
-    border:1px solid rgba(209,177,120,.55);
-    box-shadow:0 6px 24px rgba(0,0,0,.25);
+    display:block; width:180px; height:auto;
+    margin-bottom:18px;
+    background:rgba(74,122,90,.7);
+    -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
     opacity:0; animation:fadeUp 1s .15s forwards;
   }
 }
