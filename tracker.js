@@ -121,10 +121,11 @@
 
   /* ── EVENT 4: VILLA CARD CLICKS ── */
   const villaLabels = {
-    kunnackal: 'Villa 1 (Kunnackal)',
-    verdant:   'Villa 2 (Verdant)',
-    serene1:   'Villa VI (Serene I)',
-    serene2:   'Villa VII (Serene II)',
+    /* Must match the names shown on the website (script.js VILLAS) */
+    kunnackal: 'Villa 1',
+    verdant:   'Villa 2',
+    serene1:   'Villa 7',
+    serene2:   'Villa 6',
   };
 
   document.querySelectorAll('.villa-card, .uc-card').forEach(card => {

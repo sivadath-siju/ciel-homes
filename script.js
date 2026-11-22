@@ -38,17 +38,17 @@ const VILLAS = {
     isUC:   false,
     /* CHANGE: Replace with real villa photo URLs */
     images: [
-      'Images/Villa1_2.png',
+      'Images/Villa1_2.jpg',
       'Images/Villa1_garden.jpeg',
-      'Images/Villa1_3.png',
-      'Images/Villa1,1.jpeg',
+      'Images/Villa1_3.jpg',
+      'Images/Villa1_1.jpg',
       'Images/Villa1_elevation.jpg',
 
     ],
     /* CHANGE: Full property description */
     desc: 'A stylish 3BHK villa designed for comfortable living in the peaceful surroundings of Kunnackal, Muvattupuzha. This semi-furnished home features modern glass handrails, premium full body vitrified flooring, and a beautifully landscaped garden with Korean grass and natural plant fencing. All bedrooms come with attached bathrooms and shower partitions. The property includes ample parking space, a spacious yard finished with Bangalore stone, and a ceramic tile truss roof designed for future expansion to 4BHK.',
 
-price: 'Contact Us for Pricing',
+price: 'Sold out — ask us about our current villas',
 
 specs: {
   'Bedrooms': '3 BHK — All Attached',
@@ -76,7 +76,8 @@ features: [
 
   verdant: {
     name:   'Villa 2',
-    status: 'Completed — Sold - Out',
+    status: 'Completed — Sold Out',
+    price:  'Sold out — ask us about our current villas',
     isUC:   false,
     /* CHANGE: Replace with real photos */
     images: [
@@ -105,7 +106,7 @@ features: [
   },
 
   serene1: {
-    name:   'Villa VII',
+    name:   'Villa 7',
     status: 'Under Construction',
     isUC:   true,
     /* CHANGE: Use site progress photos or architectural renders */
@@ -114,7 +115,7 @@ features: [
       'Images/Villa_6/3d_2.jpeg',
       'Images/Villa_6/3d_3.jpeg',
     ],
-    desc: 'Villa VII is currently under construction and will be ready for possession in Mid 2026. It follows the same premium specification as our completed villas — fully furnished, gated community, private garden, and swimming pool access. Pre-launch enquiries are welcome',
+    desc: 'Villa 7 is currently under construction and will be ready for possession in Mid 2026. It follows the same premium specification as our completed villas — fully furnished, gated community, private garden, and swimming pool access. Pre-launch enquiries are welcome.',
 
 price: 'Contact Us for Pricing',
 
@@ -139,7 +140,7 @@ features: [
   },
 
   serene2: {
-    name:   'Villa VI',
+    name:   'Villa 6',
     status: 'Under Construction',
     isUC:   true,
     /* CHANGE: Photos */
@@ -198,6 +199,8 @@ features: [
   ).join('');
 
   if (villa.images.length < 2) return; /* only one photo — nothing to rotate */
+  /* Visitors who turned on "Reduce motion" on their phone see a still photo */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const slides = [...track.querySelectorAll('.featured-slide')];
   let idx = 0;
@@ -219,11 +222,13 @@ const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
 const cursorEl = document.getElementById('cursor');
 const ringEl   = document.getElementById('cursorRing');
 
-if (isTouchDevice) {
-  cursorEl.style.display = 'none';
-  ringEl.style.display   = 'none';
-  document.body.style.cursor = 'auto';
-} else {
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* The custom cursor is only switched on for mouse users. If anything fails,
+   visitors keep their normal arrow cursor (styles.css hides it only when
+   body has the "custom-cursor" class). */
+if (!isTouchDevice && !prefersReducedMotion && cursorEl && ringEl) {
+  document.body.classList.add('custom-cursor');
   let mx = 0, my = 0, rx = 0, ry = 0;
   document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
   (function loopCursor() {
@@ -371,8 +376,28 @@ function goToSlide(n) {
   sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
   document.querySelectorAll('.slider-dot').forEach((dot, i) => {
     dot.classList.toggle('active', i === currentSlide);
+    dot.setAttribute('aria-current', i === currentSlide ? 'true' : 'false');
   });
+  const counter = document.getElementById('sliderCount');
+  if (counter) counter.textContent = totalSlides > 1 ? `Photo ${currentSlide + 1} of ${totalSlides}` : '';
 }
+
+/* Swipe left / right on the photo to change pictures (phones) */
+(function enableSliderSwipe() {
+  const slider = document.getElementById('modalSlider');
+  if (!slider) return;
+  let startX = 0, startY = 0, tracking = false;
+  slider.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY; tracking = true;
+  }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    if (!tracking) return;
+    tracking = false;
+    const dx = e.changedTouches[0].clientX - startX;
+    const dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) goToSlide(currentSlide + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+})();
 
 sliderPrev.addEventListener('click', () => goToSlide(currentSlide - 1));
 sliderNext.addEventListener('click', () => goToSlide(currentSlide + 1));
@@ -409,7 +434,8 @@ function openModal(villaKey, { updateUrl = true } = {}) {
   modalBadge.className   = 'modal-badge' + (v.isUC ? ' gold' : '');
   modalTitle.textContent = v.name;
   modalDesc.textContent  = v.desc;
-  modalPrice.textContent = v.price;
+  modalPrice.textContent = v.price || '';
+  modalPrice.hidden      = !v.price;
 
   /* Spec tiles */
   modalSpecs.innerHTML = Object.entries(v.specs).map(([key, val]) =>
@@ -430,10 +456,10 @@ function openModal(villaKey, { updateUrl = true } = {}) {
   /* Image slider */
   totalSlides = v.images.length;
   sliderTrack.innerHTML = v.images.map(src =>
-    `<img class="slider-img" src="${src}" alt="${v.name}" loading="lazy">`
+    `<img class="slider-img" src="${src}" alt="${v.name} — photo ${v.images.indexOf(src) + 1}" loading="lazy">`
   ).join('');
   sliderDots.innerHTML = v.images.map((_, i) =>
-    `<div class="slider-dot${i === 0 ? ' active' : ''}" data-i="${i}"></div>`
+    `<button type="button" class="slider-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Show photo ${i + 1}"></button>`
   ).join('');
   sliderDots.querySelectorAll('.slider-dot').forEach(dot =>
     dot.addEventListener('click', () => goToSlide(+dot.dataset.i))
@@ -452,9 +478,9 @@ function openModal(villaKey, { updateUrl = true } = {}) {
     setTimeout(() => {
       const select = document.getElementById('interest');
       if (select) {
-        for (const opt of select.options) {
-          if (opt.value === v.name) { opt.selected = true; break; }
-        }
+        const match = [...select.options].find(opt => opt.value === v.name)
+                   || [...select.options].find(opt => opt.value === 'General Enquiry');
+        if (match) match.selected = true;
       }
       document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     }, 350);
@@ -563,3 +589,9 @@ form.addEventListener('submit', async e => {
     submitBtn.textContent = 'Send Enquiry';
   }
 });
+
+/* ============================================================
+   8. FOOTER YEAR — updates automatically every January
+============================================================ */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
