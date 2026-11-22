@@ -1435,12 +1435,10 @@ body.custom-cursor [role="button"], body.custom-cursor button, body.custom-curso
 /* Logo on phones: light recolour of the real logo (leaf green / cream / gold),
    no background panel, larger. Desktop keeps its framed panel on the right. */
 @media (max-width:900px) {
-  /* Original logo colours, shown on a soft ivory glow that fades out at the
-     edges (no hard box), so the dark green/brown stays readable on the photo. */
+  /* Original logo, no background */
   .hero-logo-mobile {
-    display:block; width:min(92vw, 400px); height:auto;
-    padding:12% 13%; margin:-5% 0 10px -5%;
-    background:radial-gradient(ellipse 50% 50% at 50% 50%, rgba(250,247,240,.96) 62%, rgba(250,247,240,0) 100%);
+    display:block; width:min(86vw, 360px); height:auto;
+    margin:0 0 20px -4px;
     opacity:0; animation:fadeUp 1s .15s forwards;
   }
 
@@ -1463,6 +1461,5 @@ body.custom-cursor [role="button"], body.custom-cursor button, body.custom-curso
   h1, h2, h3, p, .why-title, .step-title { overflow-wrap:break-word; }
 }
 @media (max-width:600px) {
-  .hero-logo-mobile { width:min(94vw, 380px); }
   .slideshow-toggle { min-height:44px; padding:0 14px; }
 }
