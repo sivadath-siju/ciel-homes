@@ -904,7 +904,6 @@ footer {
   gap:16px; flex-wrap:wrap;
 }
 .f-copy { font-size:15px; color:var(--muted); }
-.f-privacy { font-size:15px; color:var(--muted); line-height:1.6; max-width:640px; flex-basis:100%; order:3; }
 .f-social { display:flex; gap:8px 24px; flex-wrap:wrap; }
 /* CHANGE: Social link URLs are in index.html */
 .f-social a {
